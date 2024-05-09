@@ -41,7 +41,7 @@ def get_keyword_embedding(bert_model, tokenizer, key_words):
 
 def add_keyword_to_model(model_name=EMBEDDING_MODEL, keyword_file: str = "", output_model_path: str = None):
     key_words = []
-    with open(keyword_file, "r") as f:
+    with open(keyword_file, "r", encoding="utf-8") as f:
         for line in f:
             key_words.append(line.strip())
 
@@ -77,3 +77,6 @@ def add_keyword_to_embedding_model(path: str = EMBEDDING_KEYWORD_FILE):
     output_model_name = "{}_Merge_Keywords_{}".format(EMBEDDING_MODEL, current_time)
     output_model_path = os.path.join(model_parent_directory, output_model_name)
     add_keyword_to_model(model_name, keyword_file, output_model_path)
+
+if __name__ == "__main__":
+    add_keyword_to_embedding_model("embedding_keywords.txt")
